@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './14.png';
+import ReporteVentas from './reportWebVitals';
 import './App.css';
 
-const Producto = ({ nombre, descripcion, precio, imagen }) => (
+const Producto = ({ nombre, precio, imagen, onAddToCart }) => (
   <div className="producto">
     <img src={imagen} alt={nombre} className="imagen" />
     <h3>{nombre}</h3>
-    <p>{descripcion || "Producto de alta calidad"} </p>
     <strong>S/. {precio}</strong>
-    <button>Añadir al carrito</button>
+    <button onClick={() => onAddToCart({ nombre, precio, imagen })}>
+      Añadir al carrito
+    </button>
+  </div>
+);
+
+const Carrito = ({ carrito, onRemoveFromCart, visible, onClose }) => (
+  <div className={`carrito ${visible ? 'visible' : ''}`}>
+    <button className="cerrar-carrito" onClick={onClose}>✖</button>
+    <h2>🛒 Carrito</h2>
+    {carrito.length === 0 ? (
+      <p>El carrito está vacío.</p>
+    ) : (
+      carrito.map((item, index) => (
+        <div key={index} className="carrito-item">
+          <span>{item.nombre}</span>
+          <span>S/. {item.precio}</span>
+          <button onClick={() => onRemoveFromCart(index)}>❌</button>
+        </div>
+      ))
+    )}
+    {carrito.length > 0 && (
+      <div className="carrito-total">
+        Total: S/. {carrito.reduce((acc, item) => acc + item.precio, 0)}
+      </div>
+    )}
   </div>
 );
 
@@ -26,6 +51,19 @@ const productos = [
 ];
 
 const App = () => {
+  const [carrito, setCarrito] = useState([]);
+  const [mostrarCarrito, setMostrarCarrito] = useState(false);
+
+  const handleAddToCart = (producto) => {
+    setCarrito([...carrito, producto]);
+  };
+
+  const handleRemoveFromCart = (index) => {
+    const nuevoCarrito = [...carrito];
+    nuevoCarrito.splice(index, 1);
+    setCarrito(nuevoCarrito);
+  };
+
   return (
     <>
       <section className="hero">
@@ -42,12 +80,26 @@ const App = () => {
         <p className="subtitulo">Explora las mejores opciones del mercado</p>
         <div className="grid">
           {productos.map((prod, index) => (
-            <Producto key={index} {...prod} />
+            <Producto key={index} {...prod} onAddToCart={handleAddToCart} />
           ))}
         </div>
       </div>
+
+      <button className="boton-carrito" onClick={() => setMostrarCarrito(true)}>
+        🛒 Ver Carrito ({carrito.length})
+      </button>
+
+      <Carrito
+        carrito={carrito}
+        onRemoveFromCart={handleRemoveFromCart}
+        visible={mostrarCarrito}
+        onClose={() => setMostrarCarrito(false)}
+      />
+      <ReporteVentas />
     </>
   );
 };
+
+
 
 export default App;

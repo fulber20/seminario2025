@@ -1,0 +1,76 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #111;
+    color: white;
+  }
+  
+  .ventas-container {
+    padding: 20px;
+    margin: auto;
+    max-width: 1200px;
+  }
+  
+  .titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #d4af37; /* Color dorado */
+    margin-bottom: 30px;
+  }
+  
+  .tabla-ventas {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tabla-ventas th,
+  .tabla-ventas td {
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1.1rem;
+    color: white;
+  }
+  
+  .tabla-ventas th {
+    background-color: #2a9d8f; 
+    color: white;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .tabla-ventas tr:nth-child(even) {
+    background-color: #222;
+  }
+  
+  
+  .tabla-ventas td {
+    border-bottom: 1px solid #333; 
+  }
+  
+  .tabla-ventas td,
+  .tabla-ventas th {
+    border: 1px solid #333; 
+  }
+  
+  .tabla-ventas td {
+    color: #ccc; 
+  }
+  @media (max-width: 768px) {
+    .tabla-ventas {
+      font-size: 1em;
+    }
+  
+    .tabla-ventas th, .tabla-ventas td {
+      padding: 10px;
+    }
+  }
+
+  .fila-total {
+    background-color: #1a1a1a;
+    border-top: 2px solid #2a9d8f;
+  }
+  

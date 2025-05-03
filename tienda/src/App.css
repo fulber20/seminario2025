@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
   margin: 0;
   padding: 0;
@@ -77,7 +77,7 @@ body {
 
 .producto:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); /* Sombra dorada */
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); 
 }
 
 .imagen {
@@ -100,16 +100,15 @@ p {
 }
 
 strong {
-  color: #2a9d8f; /* Verde elegante */
+  color: #2a9d8f; 
   font-size: 1.1rem;
   display: block;
   margin-bottom: 10px;
 }
 
-/* Botón elegante */
 button {
-  background-color: #d4af37; /* Dorado */
-  color: #111; /* Negro para contraste */
+  background-color: #d4af37; 
+  color: #111;
   font-size: 0.95rem;
   padding: 10px 18px;
   border: none;
@@ -121,10 +120,68 @@ button {
 }
 
 button:hover {
-  background-color: #b08a2e; /* Dorado más oscuro */
+  background-color: #b08a2e;
   transform: scale(1.05);
 }
 
 button:focus {
   outline: none;
+}
+
+.boton-carrito {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2a9d8f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.carrito {
+  position: fixed;
+  top: 0;
+  right: -300px; /* fuera de la vista */
+  width: 300px;
+  height: 100%;
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+}
+
+.carrito.visible {
+  right: 0;
+}
+
+.cerrar-carrito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.carrito-total {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: right;
+  color: #2a9d8f;
 }
